@@ -11,9 +11,10 @@ const Port = process.env.PORT || 5000; // ✅ fallback in case .env is missing
 // ================= MIDDLEWARE =================
 app.use(express.json());
 app.use(cookieParser()); // !This will let you read and set cookies easily in your routes.
+app.use(cors())
 // ================= Cors =================
 app.use(cors({
-  origin: ["http://localhost:5173","https://quiickkpay.netlify.app"],  // React frontend URL
+  origin: ["https://quiickkpay.netlify.app" , "http://localhost:5173"],  // React frontend URL
   credentials: true,               // allow cookies / auth headers
 }));
 
