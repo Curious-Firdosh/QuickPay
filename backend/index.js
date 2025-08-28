@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser()); // !This will let you read and set cookies easily in your routes.
 // ================= Cors =================
 app.use(cors({
-  origin: "http://localhost:5173", // React frontend URL
+  origin: ["http://localhost:5173", "https://quick-pay-sigma.vercel.app"],  // React frontend URL
   credentials: true,               // allow cookies / auth headers
 }));
 
