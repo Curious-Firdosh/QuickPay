@@ -7,10 +7,16 @@ const TransferApi = async (amount , to) => {
 
     try {
 
+        const token = localStorage.getItem("token")
         const response = await axios.post(
                     `${VITE_API_URL}api/v1/account/transfer`,
                     {amount, to},
-                    { withCredentials: true }
+                    {
+                        withCredentials: true,
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
              );
         
         toast.success(`${amount} Sent Successfully`)

@@ -5,13 +5,23 @@ import React, { useEffect, useState } from 'react'
 const VITE_API_URL= import.meta.env.VITE_API_URL
 
 const Balance = () => {
+
+    console.log("Backend URL:", import.meta.env.VITE_API_URL);
     
     const [balance , setbalance] = useState(null)
 
     const cheackBalance = async () => {
+
+         const token = localStorage.getItem("token");
+
         const response = await axios.get(
             `${VITE_API_URL}api/v1/account/balance`,
-            {withCredentials :true}
+             {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                 }
+            }
         )
         console.log("Backend Resposne",response.data.accountBalance);
         setbalance(response.data.accountBalance)
