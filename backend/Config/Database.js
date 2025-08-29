@@ -8,6 +8,5 @@ exports.Database = () => {
     .catch((error) => {
         console.log("Database Connection Failed")
         console.error( "Error is => ", error);
-        process.exit(1)
     })
 }
