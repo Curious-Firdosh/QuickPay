@@ -11,6 +11,7 @@ const AllUsers = () => {
 
     const [users , setUsers] = useState([])
     const[filter , setFilter] = useState('')
+    const [loader ,setloader] = useState(true)
 
     useEffect(() => {
 
@@ -20,6 +21,8 @@ const AllUsers = () => {
             if(data){
                 setUsers(data.users)
             }
+
+            setloader(false)
         }
 
         featchUsers()
@@ -27,29 +30,37 @@ const AllUsers = () => {
 
 
   return (
-    <div className=' mt-4'>
-        <AppBar users = {users}/>
-        <Balance/>
-        <h2 className='font-semibold  text-4xl lg:ml-4 lg:mb-2'>Users</h2>
-        <div className='p-3'>
-            <input 
-                type = "text"
-                placeholder='Search For User'
-                onChange={(e) => {
-               setFilter( e.target.value);  
-                }}
-                className='w-full p-2 outline'
-            />
+    <>
+        {
+            loader ? (<div className='loader2'> </div>)
+            : 
+            (
+                    <div className=' mt-4'>
+                        <AppBar users = {users}/>
+                        <Balance/>
+                        <h2 className='font-semibold  text-4xl lg:ml-4 lg:mb-2'>Users</h2>
+                        <div className='p-3'>
+                            <input 
+                                type = "text"
+                                placeholder='Search For User'
+                                onChange={(e) => {
+                            setFilter( e.target.value);  
+                                }}
+                                className='w-full p-2 outline'
+                            />
 
-        </div>
-        <div className=''>
-            {
-            users.map((user) => {
-                return <UserCard key={user._id} user = {user}/>
-            })
+                        </div>
+                        <div className=''>
+                            {
+                            users.map((user) => {
+                                return <UserCard key={user._id} user = {user}/>
+                            })
+                        }
+                        </div>
+                    </div>
+            )
         }
-        </div>
-    </div>
+    </>
   )
 }
 
