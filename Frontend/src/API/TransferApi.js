@@ -2,12 +2,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
+const VITE_API_URL= import.meta.env.VITE_API_URL
 const TransferApi = async (amount , to) => {
 
     try {
 
         const response = await axios.post(
-                    "http://localhost:4001/api/v1/account/transfer",
+                    `${VITE_API_URL}api/v1/account/transfer`,
                     {amount, to},
                     { withCredentials: true }
              );

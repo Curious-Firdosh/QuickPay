@@ -2,13 +2,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
+const VITE_API_URL= import.meta.env.VITE_API_URL
+
 const Balance = () => {
     
     const [balance , setbalance] = useState(null)
 
     const cheackBalance = async () => {
         const response = await axios.get(
-            "http://localhost:4001/api/v1/account/balance",
+            `${VITE_API_URL}api/v1/account/balance`,
             {withCredentials :true}
         )
         console.log("Backend Resposne",response.data.accountBalance);

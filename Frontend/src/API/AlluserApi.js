@@ -2,14 +2,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
-
+const VITE_API_URL= import.meta.env.VITE_API_URL
 
 const AlluserApi = async (filter ="") => {
       
     try {
 
         const response = await axios.get(
-            `http://localhost:4001/api/v1/user/search?filter=${filter}`,
+            `${VITE_API_URL}api/v1/user/search?filter=${filter}`,
             { withCredentials: true }
         );
 
